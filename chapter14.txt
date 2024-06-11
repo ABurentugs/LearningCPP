@@ -140,6 +140,54 @@ const std::string& getName() const {
 14.9 Introduction to constructors
 
 - constructor: special member fucntion automatically called. They do not create objects.
+- constructors have no return type.
+- Example:
+
+class Foo{
+public:
+	Foo(int x, int y)
+	{
+		std::cout << "constructed" << "\n";
+	}
+private:
+	int m_x{};
+	int m_y{};
+};
+
+14.10  Constructor member initializer list
+
+- members can be initialized via "member initialization list"
+
+// inside class Foo
+public:
+	Foo(int x, int y)
+	: m_x{x}
+	, m_y{y}
+	{
+		std::cout << "cosntructed" << "\n";
+	}
+- pay careful attention to initialization list order!
+- don't forget about default value initialization
+#1
+enum Color{ red, green, blue };
+class Ball{
+public:
+	Ball(Color color, double radius)
+	: m_color{color}
+	, m_radius{radius}
+	{}
+	const Color getColor() const {return m_color;}
+	double getRadius() const {return m_radius;}
+private:
+	Color m_color{Color::red};
+	double m_radius{0.0};
+};
+void printAll(const Ball& myBall)
+{
+	std::cout << "myball" << myBall.getColor() << myBall.getRadius() << "\n";
+}
+
+14.11 Default constructor
 
 
 
