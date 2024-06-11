@@ -302,6 +302,12 @@ Fraction(const Fraction& fraction)
 - access control works on per class basis, not per objects basis.
 - prefer implicit copy constructor
 
+14.15 Class initialization and copy elision
+
+- copy elision avoids unnecessary copies.
+
+
+
 
 
 
