@@ -189,6 +189,30 @@ void printAll(const Ball& myBall)
 
 14.11 Default constructor
 
+- default constructor: no arguments
+
+// inside class Foo
+public:
+	Foo()
+	{
+		std::cout << "hello";
+	}
+// inside main
+Foo myFoo{};
+
+- Constructor with default arguments
+
+// inside class Foo
+public:
+	Foo(int x=0, int y=0){}
+
+- overloaded constructors: 2 constructors created.
+- there is implicit default constructor. use =default.
+
+// inside class Foo
+public:
+	Foo() = default;
+	Foo(int x=1, int y=1){}
 
 
 
