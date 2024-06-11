@@ -322,6 +322,20 @@ public:
 	{
 	}
 
+14.17 Constexpr aggregates and classes
+
+- constexpr: evaluated at compile time/ runtime
+- there can be constexpr member fucntions
+
+struct Pair{
+int m_x{};
+int m_y{};
+constexpr int greater() const
+{return (x>y ? x : y);}
+};
+
+- the above works for structs, but not for classes as classes have private member variables
+- to make it ok, use the constexpr on the constructor
 
 
 
