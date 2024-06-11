@@ -284,9 +284,23 @@ IntPair myPair{1, 2};
 print(myPair);		
 print(IntPair {1, 2});	// do this instead
 
+14.14 Intro to copy-constructor
 
+- copy constructor: used to initialize an object with existing object of same type
 
+Fraction f {2, 3};
+Fraction fCopy {f};
 
+- implicit compy constructor exists.
+- defining your own copy-constructor
+
+Fraction(const Fraction& fraction)
+: m_numer{fraction.m_numer}
+, m_denom{fraction.m_denom}
+{}
+
+- access control works on per class basis, not per objects basis.
+- prefer implicit copy constructor
 
 
 
