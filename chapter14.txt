@@ -265,6 +265,25 @@ private:
 	double m_radius{1.0};
 }
 
+14.13 Temporary class objects
+
+- if variable is used only once, we don't need it. Use expressions straight away.
+
+int add(int x, int y){
+	// int sum{x + y};
+	// return sum;
+		// instead do
+	return (x + y);
+}
+
+- similarly do the same for function arguments
+- remeber about lvalue expressions and lvalue references.
+- temporary class objects
+
+IntPair myPair{1, 2};
+print(myPair);		
+print(IntPair {1, 2});	// do this instead
+
 
 
 
