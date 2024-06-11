@@ -214,8 +214,56 @@ public:
 	Foo() = default;
 	Foo(int x=1, int y=1){}
 
+14.12 Delegating constructors
 
+- when overloading constructors, tend to repeat yourself(DRY). Using delegating constructors to avoid this situation
 
+class Employee
+{
+public:
+	Employee(std::string_view name)
+	: Employee{name, 0}
+	{}
+
+	Employee(std::string_view name, int id)
+	: m_name{name}
+	, m_id{id}
+	{
+		std::cout << "crazy";
+	}
+private:
+	std::string m_name{};
+	int m_id{0};
+};
+
+- or use default arguments
+
+class Employee
+{
+public:
+	Employee(std::string_view name, int id=0)
+	: m_name{name}
+	, m_id{id}
+	{std::cout << "crazier";}
+};
+
+#1
+class Ball
+{
+public:
+	Ball(double radius)
+	: Ball("black", radius)
+	{}
+	
+	Ball(std::string color="black", double radius=10.0)
+	: m_color{color}, m_radius{radius}
+	{
+		std::cout << "crazy" << "\n";
+	}
+private:
+	std::string m_color{"none"};
+	double m_radius{1.0};
+}
 
 
 
