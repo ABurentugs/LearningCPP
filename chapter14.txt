@@ -1,0 +1,155 @@
+Chapter 14
+
+14.1 Introduction to OOP
+
+- Procedural programming, OOP
+
+14.2 Introduction to classes
+
+- structs with member function
+- class invariant problem: conditions that should be true. 'Invalid state'
+- class and structs are technically almost identical but how they are used is different.
+- class definition:
+
+class Employee{
+	int m_id{};
+	int m_age{};
+	double m_wage{};
+};
+
+- Most of C++ standard library is classes.
+
+14.3 Member functions
+
+- classes/structs have their own functions/methods.
+- member functions have implicit object: 'this'
+- member function example
+
+struct Person{
+	std::string name{};
+	int age{};
+	void kisses(const Person& p){
+		// name kisses p
+	}
+};
+Person joe{};
+Person jane{};
+joe.kisses(jane);
+
+- notice kisses(joe, jane) vs joe.kisses(jane)
+- member function, variable declaration order does not matter.
+- member functions can be overloaded.
+- structs should avoid defining constructors.
+#1
+struct IntPair{
+	int num1{};
+	int num2{};
+	void print(){
+		std::cout << num1 << ' ' << num2 << '\n';
+	};
+};
+#2 
+// inside struct IntPair:
+bool isEqual(const IntPair& newPair){
+	return (num1 == newPair.num1) || (num2 == newPair.num2);
+};
+
+14.4 Const class objects and const member functions
+
+- All const variables must be initialized at time of creation
+
+const IntPair myPair{1,2};
+
+- modifying myPair's data members is not allowed.
+- const objects cannot call non-const member functions. Member functions need to be have special tag indicating that it is able to manage const objects. -> const member fucntions.
+
+// inside struct IntPair:
+void print() const		
+// read this as function that returns void, can deal with const objects.
+{
+	// do sth
+};
+
+- still, even if it is marked as being able to handle const objects, it is not allowed to modify the const objects.
+- passing by const reference& can create a const object.
+
+
+14.5 Public and private members and access specifiers
+
+- access level is a property. C++ has 3 access levels. Public, Private, Protected.
+- For struct public by default, for classes private by default.
+- use m_ naming convenction for class member variables.
+- access specifier sets the access level. private: , public: 
+
+#1
+class Point3d{
+public:
+	void setValue(int a, int b, int c){
+		m_x = a;
+		m_y = b;
+		m_z = c;
+	};
+	void print() const{
+		std::cout << m_x << m_y << m_z << '\n';
+	};
+	bool isEqual(const Point3d& p) const{
+		// access specifier is not object-wide, it is class-wide.
+		return (p.m_x == m_x) || () || (); 	// p.m_x is ok.
+	};
+private:
+	int m_x{};
+	int m_y{};
+	int m_z{};
+};
+
+14.6 Access functions
+
+- good to setup access functions such as getters, setters.
+
+// inside Point3d:
+int getX() const{return m_x;};
+const int& getY() const {return m_y;};
+void setX(int x){m_x = x;};
+
+- as seen from above return via value, or const reference.
+- why make data private if we're going to provide access functions
+
+
+14.7 member functions should return via reference
+
+- returning data members via value can be expensive.
+- use references.
+
+public:
+std::string getName() const {
+	return m_name;	// return by value - expensive.
+};
+
+- using references looks like:
+public:
+const std::string& getName() const {
+	return m_name;
+};
+
+14.8 Benefits of encapsulation(data hiding)
+
+- think of public members as interface, private members as the implementation. While the implementation may change, the interface is kept the same for simplicity.
+- data hiding allows us to handle invariants.
+- prefer non-member functions.
+
+14.9 Introduction to constructors
+
+- constructor: special member fucntion automatically called. They do not create objects.
+
+
+
+
+
+
+
+
+
+
+
+
+
