@@ -306,7 +306,21 @@ Fraction(const Fraction& fraction)
 
 - copy elision avoids unnecessary copies.
 
+14.16 Converting constructors and 'explicit'
 
+- if we do sth stupd like convert '5' to a class type, we use converting constructors
+
+Foo x {5};
+
+- all constructors are like this. THey implicitly convert.
+- 'explicit' keyword used to tell compiler please don't use as converting constructor
+
+// inside class Dollars:
+public: 
+	explicit Dollars(int d)
+	: m_dollar{d}
+	{
+	}
 
 
 
