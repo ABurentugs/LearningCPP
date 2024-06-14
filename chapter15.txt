@@ -1,0 +1,66 @@
+Chapter 15 More on classes
+
+15.1 "this" pointer, function chaining
+
+- Hidden "this" pointer: mostly implicitly used. m_id and this->m_id the same thing
+- How "this" is set. "this is set like this: setID(Simple* const this, int id){}
+- Only need for explicitly referencing 'this' is to avoid name collisions(kinda stupid?)
+- Also *this can be returns as pointer. This is for the purpose of function chaining.
+
+// instead of calling a multiple functions 1 by 1, we can concatenate.
+Calc calc{};
+calc.add().sub().multiply();  // this is function/method chaining.
+
+- we can also use the 'this' pointer to reset the class object to a default state.
+
+// inside class
+void reset(){
+    *this = {};  // value0 initialization
+  }
+
+15.2 Classes and header files
+
+- for complicated things, class-definition(emphasis on the class definition) inside header files.
+- class method/function definitions can be done else where using ClassName:: scope resolution operator.
+- if using inline, class methods can also be defined inside the header. But don't do that, this is due to complication when compiling.
+- Remember to put the default member fucntion arguments inside class definition.
+
+15.3 Nested types
+
+- don't forget scoped enumerations.
+
+enum class FruitType
+{ apple, banana, cherry };
+
+- Nested types(member types), like enums but defined inside class
+
+class Fruit
+{
+public:
+  enum Type
+  { apple, banana, cherry };
+}
+
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
